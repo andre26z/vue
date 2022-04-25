@@ -35,6 +35,7 @@ const app = Vue.createApp({
 			this.counter = this.counter - num;
 			// this.counter--;
 		},
+		
 	},
 });
 
