@@ -19,15 +19,18 @@
 		<section id="styling">
 			<div
 				class="demo"
-				:style="{borderColor: boxAselected ? 'red' : '#ccc'}"
+				:class="boxAClasses" 
 				@click="boxSelected('A')"
-			></div> <!--o : antes do style é o v:bind, estou bindando o estilo ao @click, o click puxa a minha função boxSelected, a caixa que eu apertar vai transforar de false para true e, conforme o ternário acima, se for true = red, se for falso fica cinza-->
-			<div class="demo" :style="{borderColor: boxBselected ? 'blue' : '#ccc'}" @click="boxSelected('B')"></div>
+			></div> <!--o : antes do style é o v:bind, estou bindando o estilo ao @click, o click puxa a minha função boxSelected, a caixa que eu apertar vai transforar de false para true e, conforme o ternário acima, se for true = red, se for falso fica cinza--> <!--podemos fazer desse jeito :class="{demo: true, active: boxAselected}"  quanto ao :class, se o demo for true o box A puxa as características do .active do CSS-->
+			<div 
+			class="demo" 
+			:class="{activeB: boxBselected}" 
+			@click="boxSelected('B')"></div>
 			<div
-				class="demo"
-				:style="{borderColor: boxCselected ? 'orange' : '#ccc'}"
+				:class="['demo', {activeC: boxCselected}]"
 				@click="boxSelected('C')"
-			></div>
-		</section>
+			></div> 
+			<!-- podemos fazer também como uma array, no caso do exemplo do C, o demo está na array e as interações num objeto -->
+			</section>
 	</body>
 </html>

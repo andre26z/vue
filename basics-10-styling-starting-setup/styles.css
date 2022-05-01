@@ -34,3 +34,18 @@ header {
   margin: 16px;
   border: 2px dashed #ccc;
 }
+
+.active {
+  border-color: red;
+  background-color: salmon;
+}
+.activeB {
+  border-color: rgb(209, 187, 187);
+  background-color: rgb(139, 114, 250);
+}
+
+.activeC {
+  border-radius: 10px;
+  box-shadow: 10px #4fc08d ;
+  background-color: aqua;
+}
