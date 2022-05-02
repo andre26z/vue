@@ -26,8 +26,9 @@
 			<!--o v-if dentro do HTML decide se a tag vai aparecer ou não, exemplo: v-if="goals.length === 0, se a length da minha array goals for 0 ele vai renderizar, caso contrário vai não vai renderizar  TEM QUE RETORNAR VALOR BOOLEANO PRA FUNCIONAR - true or false-->
 			<ul v-else>
 				<!--v-else só funciona se ele for incluido DIRETAMENTE DEPOIS do elemento que possui V-IF, o meu ul pode ser também v-else-if="goals.length > 0"-->
-				<li v-for="(goal, index) in goals" @click="removegol(index)">
-					{{goal}} - {{index}}
+				<li v-for="goal in goals" :key="goal" @click="removegol(index)">
+					<p>{{goal}} - {{index}}</p>
+					<input type="text" @click.stop> <!--o click.stop previne que ao clicar no input desapareça a tela conforme eu programei acima - só vai desaparecer quando eu clicar no container que não for o input-->
 				</li>
 				<!--para cada {{goal}} que eu incluir vai ser incluido um novo li na minha ul por causa do v-for, o nome goal pode ser substituido por qualquer nome e não precisa estar incluido no js, todo v-for precisa do in tal pra funcionaro-->
 			</ul>
