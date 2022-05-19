@@ -3,7 +3,7 @@ const app = Vue.createApp({
 		return {
 			estilo: "",
 			show: true,
-			bgcolor: ''
+			bgcolor: "",
 		};
 	},
 	watch: {
@@ -14,10 +14,10 @@ const app = Vue.createApp({
 
 	computed: {
 		mostrar() {
-			return { 
-                visible: this.show,
-                // minha função vai trocar o estilo do meu input que possui o :class = "mostrar", ao clicar eu puxo a função showbutton() que basicamente muda o show de true pra false -- nesse caso o visible:this.show quer dizer que o meu visible é true
-             };
+			return {
+				visible: this.show,
+				// minha função vai trocar o estilo do meu input que possui o :class = "mostrar", ao clicar eu puxo a função showbutton() que basicamente muda o show de true pra false -- nesse caso o visible:this.show quer dizer que o meu visible é true
+			};
 		},
 	},
 	methods: {
