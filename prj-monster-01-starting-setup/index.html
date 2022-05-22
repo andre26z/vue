@@ -19,16 +19,24 @@
     <section id="monster" class="container">
       <h2>Monster Health</h2>
       <div class="healthbar">
-        <div class="healthbar__value" :style="{width: monsterhealth + '%'}"></div> <!-- o monsterhealth + "%" eu simplesmenter transformei o meu 100 em 100% que é como está sendo representado no CSS-->
+        <div class="healthbar__value" :style="monsterhealthbar"></div>
       </div>
     </section>
     <section id="player" class="container">
       <h2>Your Health</h2>
       <div class="healthbar">
-        <div :style="playerhealthbar" class="healthbar__value"></div>
+        <div class="healthbar__value" :style="playerhealthbar"></div>
       </div>
     </section>
-    <section id="controls">
+    <section class="container" v-if="winner">
+      <h2>Game Over!</h2>
+      <h3 v-if="winner === 'monster'">You lost!</h3>
+      <h3 v-else-if="winner === 'player'">You Won! <br>visit all my projects on <a href="https://andre26z.github.io/landingpage/"> my portfolio</a> </h3>
+      <h3 v-else>Draw!</h3>
+      <button @click="startgame">Start New Game</button>
+
+    </section>
+    <section id="controls" v-else>
       <button @click="playeratack">ATTACK</button>
       <button :disabled="enableespecial" @click="especial">SPECIAL ATTACK</button>
       <button @click="heal">HEAL</button>
@@ -36,7 +44,19 @@
     </section>
     <section id="log" class="container">
       <h2>Battle Log</h2>
-      <ul></ul>
+      <ul>
+        <li v-for="logmessage in logmessages">
+          <span :class="{'log--player': logmessage.actionby === 'player', 'log--monster': logmessage.actionby === 'monster'}"> {{logmessage.actionby === 'player' ? 'Player' : 'Monster'}}</span>
+          <span v-if="logmessage.actiontype === 'heal'">
+            heal himself for <span class="log--heal"> {{logmessage.actionvalue}} </span> points of healing
+          </span>
+          <span v-if="logmessage.actiontype === 'atack'"> atacked for <span class="log--damage">{{logmessage.actionvalue}}</span> points of damage </span>
+
+        </li>
+
+        <!-- <li v-for="logmessage in logmessages">
+        The {{logmessage.actionby}}  {{logmessage.actiontype}} for {{logmessage.actionvalue}} points </li> jeito mais fácil-->
+      </ul>
     </section>
   </div>
 </body>
