@@ -1,19 +1,24 @@
 <template>
 	<li>
-		<h2>{{ friend.name }}</h2>
+		<h2>{{ name }} {{ friendIsFavorite === "1" ? "(Favorito)" : "" }}</h2>
+		<!--Só name porque os meus props já definiram, estou recebendo do template do meu App.vue o que foi colocado dentro do meu friend contact - PRESTAR ATENÇÃO QUE, NO TEMPLATE FOI ESCRITO DIFERENTE MAS NA HORA DE RECEBER ELE CONVERTE - ex: phone-number recebe como props phoneNumber-->
 		<button @click="toggleDetails()">
 			{{ DetailsAreVisible ? "Hide" : "Show" }}
 		</button>
+		<button @click="toggleFavorite()">
+			Toggle Favorite
+		</button>
 		<ul v-if="DetailsAreVisible">
-			<li><strong> Phone: </strong> {{ friend.name }}</li>
-			<li><strong> Email: </strong> {{ friend.email }}</li>
-			<li><strong> Name: </strong> {{ friend.name }}</li>
+			<li><strong> Phone: </strong> {{ phoneNumber }}</li>
+			<li><strong> Name: </strong> {{ name }}</li>
+			<li><strong> E-mail: </strong> {{ emailAddress }}</li>
 		</ul>
 	</li>
 </template>
 
 <script>
 	export default {
+		props: ["name", "phoneNumber", "emailAddress", "isFavorite"], // escrever os promes sempre entre aspas e NUNCA com traço, caso seja feito com traço (phone-number) vai da merda no javascript - mas no HTML ou dentro do template é melhor fazer com traço
 		data() {
 			return {
 				DetailsAreVisible: false,
@@ -23,15 +28,24 @@
 					phone: "4299835151",
 					email: "loki@hotmail.com",
 				},
+				friendIsFavorite: this.isFavorite,
 			};
 		},
 		methods: {
 			toggleDetails() {
 				this.DetailsAreVisible = !this.DetailsAreVisible;
 			},
+			toggleFavorite() {
+				if (this.friendIsFavorite === "1") {
+					this.friendIsFavorite = "0";
+				} else {
+					this.friendIsFavorite = "1";
+				}
+			},
 		},
 	};
 </script>
+
 <style>
 	@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
 	* {
