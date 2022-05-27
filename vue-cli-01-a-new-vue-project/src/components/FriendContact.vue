@@ -1,12 +1,10 @@
 <template>
 	<li>
-		<h2>{{ name }} {{ friendIsFavorite === "1" ? "(Favorito)" : "" }}</h2>
+		<h2>{{ name }} {{ isFavorite ? "(favorito)" : "" }}</h2>
 		<!--Só name porque os meus props já definiram, estou recebendo do template do meu App.vue o que foi colocado dentro do meu friend contact - PRESTAR ATENÇÃO QUE, NO TEMPLATE FOI ESCRITO DIFERENTE MAS NA HORA DE RECEBER ELE CONVERTE - ex: phone-number recebe como props phoneNumber-->
+		<button @click="toggleFavorite()">Toggle Favorite</button>
 		<button @click="toggleDetails()">
-			{{ DetailsAreVisible ? "Hide" : "Show" }}
-		</button>
-		<button @click="toggleFavorite()">
-			Toggle Favorite
+			{{ DetailsAreVisible ? "Hide" : "Show" }} Details
 		</button>
 		<ul v-if="DetailsAreVisible">
 			<li><strong> Phone: </strong> {{ phoneNumber }}</li>
@@ -18,17 +16,37 @@
 
 <script>
 	export default {
-		props: ["name", "phoneNumber", "emailAddress", "isFavorite"], // escrever os promes sempre entre aspas e NUNCA com traço, caso seja feito com traço (phone-number) vai da merda no javascript - mas no HTML ou dentro do template é melhor fazer com traço
+		// props: ["name", "phoneNumber", "emailAddress", "isFavorite"], // escrever os promes sempre entre aspas e NUNCA com traço, caso seja feito com traço (phone-number) vai da merda no javascript - mas no HTML ou dentro do template é melhor fazer com traço
+		props: {
+			id: {
+				type: String,
+				required: true,
+			},
+			name: {
+				type: String, // typos suportados String, Number, Boolean, Function, Object, Array.
+				required: true,
+			}, // required é necessário quando nós precisamos nos assegurar que a form deve ser preenchido antes do seu envio - caso não seja preenchido, ele não envia o form.
+
+			phoneNumber: {
+				type: String,
+				required: true,
+			},
+
+			emailAddress: {
+				type: String,
+				required: true,
+			},
+			isFavorite: {
+				type: Boolean,
+				required: false, //false, não é necessário para o andamento normal da nossa aplicação
+				default: false, //default é o valor padrão que será usado caso não seja passado nenhum valor para o isFavorite
+				// validator: function (value) {
+				// 	return value === "0" || value === "1"; //validator é uma função que recebe um valor e retorna true ou false - nesse caso se retornar 1 ou 0 vai ser validade, caso o isFavorite volte outro número, ele não vai ser validado
+			},
+		},
 		data() {
 			return {
 				DetailsAreVisible: false,
-				friend: {
-					id: "andre",
-					name: "andre",
-					phone: "4299835151",
-					email: "loki@hotmail.com",
-				},
-				friendIsFavorite: this.isFavorite,
 			};
 		},
 		methods: {
@@ -36,11 +54,8 @@
 				this.DetailsAreVisible = !this.DetailsAreVisible;
 			},
 			toggleFavorite() {
-				if (this.friendIsFavorite === "1") {
-					this.friendIsFavorite = "0";
-				} else {
-					this.friendIsFavorite = "1";
-				}
+				this.$emit("toggle-favorite", this.id); //emit é um evento que é disparado pelo componente pai, e o toggle-favorite é o evento que o componente filho vai emitir para o componente pai
+				//this.id é o parâmetro que o componente pai vai receber
 			},
 		},
 	};
