@@ -44,6 +44,18 @@
 				// 	return value === "0" || value === "1"; //validator é uma função que recebe um valor e retorna true ou false - nesse caso se retornar 1 ou 0 vai ser validade, caso o isFavorite volte outro número, ele não vai ser validado
 			},
 		},
+		
+		emits:['toggle-favorite'],// emits servem para deixar mais fácil para os outros programadores ou até para nós mesmos demonstrando todos os emits que o nosso código está fazendo
+
+		// emits: {
+		// 	'toggle-favorite': function (id) {
+		// 		if (id) {return true;} else {
+		// 			console.warn('id is missing!');
+		// 			return false
+		// 		}
+		// 	}, // esse é outro exemplo para deixar claro sobre a emissão de função, neste caso se o meu toggle favorite estiver faltando o id o meu código vai informar.
+		// },
+
 		data() {
 			return {
 				DetailsAreVisible: false,
