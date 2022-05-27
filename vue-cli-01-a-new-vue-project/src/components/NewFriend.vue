@@ -1,7 +1,7 @@
 <template>
 	<ul>
 		<li
-			
+			v-for="friend in friends"
 			:id= "friend.id"
 			:key="friend.id"
 			:name="friend.name"
@@ -13,6 +13,7 @@
 	</ul>
 </template>
 	<script>
+    
 		export default {
 			data() {
 				return {

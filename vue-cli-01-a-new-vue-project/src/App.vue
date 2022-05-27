@@ -1,10 +1,9 @@
 <template>
 	<section>
 		<h2>Hello World - this is my family:</h2>
-		
-			<friend-contact 
-			 ></friend-contact>
-			<!-- <friend-contact
+
+		<friend-contact></friend-contact>
+		<!-- <friend-contact
 				v-for="friend in friends"
 				:id="friend.id"
 				:key="friend.id"
@@ -14,9 +13,8 @@
 				:is-favorite="friend.isFavorite"
 				@toggle-favorite="toggleFavoriteStatus"
 			></friend-contact> -->
-			<!--estamos emulando um HTML dentro deste friend-contact, então é melhor usarmos traço entre as palavras porque o html entende-->
-			<!--Se eu tirar o name, phone-number, email-address vai dar um erro no console dizendo que está faltando um prop-->
-		
+		<!--estamos emulando um HTML dentro deste friend-contact, então é melhor usarmos traço entre as palavras porque o html entende-->
+		<!--Se eu tirar o name, phone-number, email-address vai dar um erro no console dizendo que está faltando um prop-->
 	</section>
 </template>
 
