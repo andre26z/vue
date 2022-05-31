@@ -11,7 +11,9 @@
 			<li><strong> Name: </strong> {{ name }}</li>
 			<li><strong> E-mail: </strong> {{ emailAddress }}</li>
 		</ul>
+		<button @click="$emit('delete', id)">Delete</button>
 	</li>
+	
 </template>
 
 <script>
@@ -44,8 +46,8 @@
 				// 	return value === "0" || value === "1"; //validator é uma função que recebe um valor e retorna true ou false - nesse caso se retornar 1 ou 0 vai ser validade, caso o isFavorite volte outro número, ele não vai ser validado
 			},
 		},
-		
-		emits:['toggle-favorite'],// emits servem para deixar mais fácil para os outros programadores ou até para nós mesmos demonstrando todos os emits que o nosso código está fazendo
+
+		emits: ["toggle-favorite", "delete"], // emits servem para deixar mais fácil para os outros programadores ou até para nós mesmos demonstrando todos os emits que o nosso código está fazendo
 
 		// emits: {
 		// 	'toggle-favorite': function (id) {
@@ -105,7 +107,8 @@
 		list-style: none;
 	}
 
-	#app li {
+	#app li,
+	#app form {
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 		margin: 1rem auto;
 		border-radius: 10px;
@@ -137,5 +140,18 @@
 		background-color: #ec3169;
 		border-color: #ec3169;
 		box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+	}
+	#app input {
+		font: inherit;
+		padding: 0.15rem;
+	}
+	#app label {
+		font-weight: bold;
+		margin-right: 1rem;
+		width: 7rem;
+		display: inline-block;
+	}
+	#app form div {
+		margin: 1rem 0;
 	}
 </style>
