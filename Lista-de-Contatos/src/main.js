@@ -7,3 +7,4 @@ const app = createApp(App);
 app.component("friend-contact", FriendContact);
 app.component("new-friend", NewFriend);
 app.mount("#app");
+ 
