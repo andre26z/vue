@@ -1,12 +1,14 @@
 <template>
 	<section>
 		<base-card>
-			<template v-slot: header>
-				<!--v-slot:header está recebendo o conteúdo do meu BaseCard, dentro deste base card eu possuo um slot para o header, então eu apliquei neste componente -->
+			<template #header>
+				<!-- #header é um atalho para v-slot:header -->
 				<h3>{{ fullName }}</h3>
 				<base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
 			</template>
-			<p>{{ infoText }}</p>
+			<template #default>
+				<p>{{ infoText }}</p>
+			</template>
 		</base-card>
 	</section>
 </template>

@@ -1,15 +1,21 @@
 <template>
 	<div>
-		<header>
-			<slot name="header"> </slot>
-			<!-- slot é um elemento usado para que nosso componente possa receber um conteúdo dentro dele, estou transformando este template em um wrap, neste caso, o posso usar o base-card como wrapper de outros elementos para que estes elementos recebam as configurações deste componente -->
+		<header v-if="$slots.header">
+			<!-- v-if="$slots.header" isso quer dizer que se o meu slots header estiver vazio ele não será mostrado, só será mostrado se houver conteúdo -->
+			<slot name="header">
+				<h2>The Default</h2>
+			</slot>
 		</header>
-		<slot> </slot>
+		<slot></slot>
 	</div>
 </template>
 
 <script>
-	export default {};
+	export default {
+		mounted() {
+			console.log(this.$slots.header);
+		},
+	};
 </script>
 
 <style scoped>
@@ -18,7 +24,6 @@
 		justify-content: space-between;
 		align-items: center;
 	}
-
 	div {
 		margin: 2rem auto;
 		max-width: 30rem;
