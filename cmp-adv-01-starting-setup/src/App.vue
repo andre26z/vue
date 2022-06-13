@@ -3,7 +3,10 @@
 		<the-header></the-header>
 		<button @click="setSelectedComponent('active-goals')">Active Goals</button>
 		<button @click="setSelectedComponent('manage-goals')">Manage Goals</button>
-		<component :is="selectedComponent"> </component>
+		<!--o Keep Alive serve para que quando nós mudamos de componente o conteúdo não seja perdido na transição, neste caso manage goals tem um input, o que eu escrever no input não vai ser perdido quando eu trocar de componente com o clique-->
+		<keep-alive> 
+			<component :is="selectedComponent"> </component>
+		</keep-alive>
 		<!-- ciclando entre dois componentes com o clique de um botão -->
 
 		<!-- The header component importado em escopo global no meu script -->
